@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rule of the Theotokos — St. Seraphim of Sarov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#6b1420; --wine-dark:#3d0a12; --gold:#c9a24a; --gold-light:#e8cf8a;
+    --parchment:#f7efdc; --parchment-2:#efe2c4; --ink:#2b1d14; --blue:#1f3566;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink);
+    font-family:"EB Garamond", Georgia, "Times New Roman", serif;
+    font-size:19px; line-height:1.6;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201,162,74,.12), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(107,20,32,.08), transparent 45%),
+      var(--parchment);
+  }
+  .page{max-width:760px; margin:0 auto; padding:0 18px 80px}
+  h1,h2,h3{font-family:"Cinzel", Georgia, serif; font-weight:700; letter-spacing:.04em}
+  em{color:#5a4632}
+
+  /* Cover */
+  .cover{
+    background:linear-gradient(160deg,var(--wine) 0%,var(--wine-dark) 100%);
+    color:var(--gold-light); text-align:center; padding:56px 20px 64px;
+    border-bottom:6px double var(--gold); position:relative; overflow:hidden;
+  }
+  .cover::before{
+    content:""; position:absolute; inset:14px; border:1.5px solid rgba(232,207,138,.55);
+    pointer-events:none;
+  }
+  .halo{width:150px; height:150px; margin:0 auto 18px; display:block}
+  .cover h1{font-size:2.1rem; margin:.2em 0 .1em; color:#f3dfa3; text-shadow:0 2px 0 rgba(0,0,0,.35)}
+  .cover .sub{font-style:italic; font-size:1.1rem; opacity:.9}
+  .cover .saint{font-family:"Cinzel",serif; letter-spacing:.2em; font-size:.85rem; margin-top:18px; opacity:.85}
+
+  /* Progress */
+  .progress{
+    position:sticky; top:0; z-index:10; background:rgba(61,10,18,.96); color:var(--gold-light);
+    padding:8px 16px; display:flex; align-items:center; gap:12px; font-family:"Cinzel",serif; font-size:.8rem;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  .bar{flex:1; height:8px; background:rgba(255,255,255,.15); border-radius:8px; overflow:hidden}
+  .bar span{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--gold),var(--gold-light)); transition:width .3s}
+  .progress button{
+    background:none; border:1px solid var(--gold); color:var(--gold-light); border-radius:6px;
+    font-family:inherit; font-size:.75rem; padding:4px 10px; cursor:pointer;
+  }
+
+  /* Ornament divider */
+  .ornament{display:flex; align-items:center; gap:12px; margin:40px 0 24px; color:var(--gold)}
+  .ornament::before,.ornament::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .ornament svg{width:34px; height:34px; flex:none}
+
+  section h2{color:var(--wine); text-align:center; font-size:1.45rem; margin:0 0 16px}
+  .card{
+    background:linear-gradient(180deg,#fffaf0,var(--parchment-2));
+    border:1px solid rgba(201,162,74,.6); border-radius:14px; padding:20px 22px;
+    box-shadow:0 1px 0 #fff inset, 0 6px 18px rgba(61,10,18,.08); margin:14px 0;
+  }
+  .rubric{color:var(--wine); font-style:italic; font-size:.92rem}
+  .dropcap::first-letter{
+    float:left; font-family:"Cinzel",serif; font-size:3.1em; line-height:.85; padding:6px 8px 0 0; color:var(--wine);
+  }
+  .prayer-title{font-family:"Cinzel",serif; color:var(--wine); font-size:.95rem; letter-spacing:.06em; display:block; margin-bottom:4px}
+  blockquote{
+    margin:12px 0; padding:14px 18px; border-left:4px solid var(--gold);
+    background:rgba(201,162,74,.10); border-radius:0 10px 10px 0; font-size:1.05rem;
+  }
+  ul.how{padding-left:1.1em} ul.how li{margin:.3em 0}
+
+  /* TOC */
+  .toc{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:8px}
+  .toc a{
+    text-decoration:none; text-align:center; font-family:"Cinzel",serif; color:var(--wine);
+    border:1px solid var(--gold); border-radius:50%; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    background:#fffaf0; font-size:1rem; transition:.2s;
+  }
+  .toc a.done{background:var(--wine); color:var(--gold-light)}
+
+  /* Decades */
+  .decade{position:relative; padding-top:26px}
+  .decade .num{
+    position:absolute; top:-18px; left:50%; transform:translateX(-50%);
+    width:44px; height:44px; border-radius:50%; background:var(--wine); color:var(--gold-light);
+    border:2px solid var(--gold); display:flex; align-items:center; justify-content:center;
+    font-family:"Cinzel",serif; font-weight:700; box-shadow:0 3px 8px rgba(0,0,0,.2);
+  }
+  .decade h3{text-align:center; color:var(--wine); font-size:1.08rem; margin:6px 0 2px}
+  .decade .intent{text-align:center; font-style:italic; margin:4px 0 14px}
+  .decade .intent b{font-style:normal; color:var(--blue); font-weight:600}
+  .beads{display:flex; flex-wrap:wrap; justify-content:center; gap:9px; margin:6px 0 12px}
+  .bead{
+    width:30px; height:30px; border-radius:50%; cursor:pointer; border:2px solid var(--gold);
+    background:radial-gradient(circle at 35% 30%,#fff,#e9dcc0); transition:transform .15s, background .2s;
+    -webkit-tap-highlight-color:transparent; padding:0;
+  }
+  .bead.on{background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold) 60%,#8a6a22); transform:scale(1.08)}
+  .pater{
+    display:flex; align-items:center; justify-content:center; gap:10px; margin:0 auto; cursor:pointer;
+    background:none; border:1.5px dashed var(--wine); color:var(--wine); border-radius:999px;
+    padding:6px 16px; font-family:"Cinzel",serif; font-size:.82rem; letter-spacing:.05em;
+  }
+  .pater .cross{width:16px; height:20px}
+  .pater.on{background:var(--wine); color:var(--gold-light); border-style:solid}
+  .decade.complete{border-color:var(--wine); box-shadow:0 0 0 2px rgba(107,20,32,.25), 0 6px 18px rgba(61,10,18,.12)}
+  .hint{text-align:center; font-size:.85rem; color:#7a6550; margin-top:-4px}
+
+  footer{text-align:center; color:#7a6550; font-size:.9rem; margin-top:40px}
+  footer svg{width:40px; height:48px; color:var(--wine)}
+
+  @media print{
+    .progress,.beads,.pater,.hint,.toc{display:none !important}
+    body{background:#fff; font-size:13pt}
+    .card{box-shadow:none; break-inside:avoid}
+    .cover{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  }
+  @media (max-width:480px){
+    body{font-size:17.5px}
+    .cover h1{font-size:1.6rem}
+    .bead{width:27px; height:27px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable Orthodox cross symbol -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="ocross" viewBox="0 0 40 52">
+    <g fill="currentColor">
+      <rect x="17" y="0" width="6" height="52" rx="1"/>
+      <rect x="11" y="6" width="18" height="4" rx="1"/>
+      <rect x="4" y="14" width="32" height="6" rx="1"/>
+      <rect x="9" y="36" width="22" height="4.5" rx="1" transform="rotate(-20 20 38)"/>
+    </g>
+  </symbol>
+  <symbol id="star" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M20 3 L23 17 L37 20 L23 23 L20 37 L17 23 L3 20 L17 17 Z" fill="currentColor" fill-opacity=".25"/>
+      <circle cx="20" cy="20" r="5"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="cover">
+  <svg class="halo" viewBox="0 0 160 160" aria-hidden="true">
+    <defs>
+      <radialGradient id="g" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#f6e3a6"/><stop offset=".7" stop-color="#c9a24a"/><stop offset="1" stop-color="#8a6a22"/>
+      </radialGradient>
+    </defs>
+    <circle cx="80" cy="80" r="74" fill="url(#g)"/>
+    <circle cx="80" cy="80" r="66" fill="none" stroke="#6b1420" stroke-width="2"/>
+    <circle cx="80" cy="80" r="60" fill="none" stroke="#fff4d0" stroke-width="1" stroke-dasharray="2 5"/>
+    <g fill="#6b1420" font-family="Cinzel, serif" font-size="15" font-weight="700" text-anchor="middle">
+      <text x="44" y="46">ΜΡ</text><text x="118" y="46">ΘΥ</text>
+    </g>
+    <use href="#ocross" x="58" y="44" width="44" height="58" style="color:#6b1420"/>
+    <g fill="#fff4d0">
+      <circle cx="80" cy="128" r="2.5"/><circle cx="68" cy="125" r="2"/><circle cx="92" cy="125" r="2"/>
+    </g>
+  </svg>
+  <h1>The Rule of the Theotokos</h1>
+  <div class="sub">One hundred and fifty salutations to the Mother of God</div>
+  <div class="saint">AS TAUGHT BY ST. SERAPHIM OF SAROV</div>
+</header>
+
+<div class="progress" role="status">
+  <span id="count">0 / 150</span>
+  <div class="bar"><span id="fill"></span></div>
+  <button id="reset" type="button">Reset</button>
+</div>
+
+<main class="page">
+
+  <div class="ornament"><svg><use href="#star"/></svg></div>
+  <section>
+    <h2>How to Use This Rule</h2>
+    <div class="card">
+      <p class="dropcap">The rule is 150 repetitions of <em>Theotokos Virgin, Rejoice</em>, prayed in fifteen decades of ten. After each decade, pray the Our Father and call to mind one event in the life of the Theotokos, with its intention.</p>
+      <ul class="how">
+        <li>Tap a bead after each <em>Rejoice</em>, then tap <b>Our Father</b> to complete the decade.</li>
+        <li>Pray slowly and attentively, before an icon if you can.</li>
+        <li>The full rule takes about 30–45 minutes. If that's too much, pray a few decades a day, and talk your rule over with your priest or spiritual father.</li>
+      </ul>
+      <div class="rubric" style="text-align:center;margin-top:10px">Go to a decade</div>
+      <nav class="toc" id="toc"></nav>
+    </div>
+  </section>
+
+  <div class="ornament"><svg><use href="#ocross"/></svg></div>
+  <section id="beginning">
+    <h2>Beginning Prayers</h2>
+    <div class="card">
+      <p class="rubric">Make the sign of the cross.</p>
+      <p>Through the prayers of our holy fathers, Lord Jesus Christ our God, have mercy on us. Amen.</p>
+      <p>Glory to Thee, our God, glory to Thee.</p>
+      <p><span class="prayer-title">O Heavenly King</span>O Heavenly King, the Comforter, the Spirit of Truth, who art everywhere present and fillest all things, Treasury of blessings and Giver of life: come and abide in us, and cleanse us from every impurity, and save our souls, O Good One.</p>
+      <p><span class="prayer-title">The Trisagion</span>Holy God, Holy Mighty, Holy Immortal, have mercy on us. <span class="rubric">(3 times)</span></p>
+      <p>Glory to the Father, and to the Son, and to the Holy Spirit, now and ever, and unto ages of ages. Amen.</p>
+      <p><span class="prayer-title">To the Holy Trinity</span>O Most Holy Trinity, have mercy on us. O Lord, cleanse us from our sins. O Master, pardon our transgressions. O Holy One, visit and heal our infirmities, for Thy name's sake.</p>
+      <p>Lord, have mercy. <span class="rubric">(3 times)</span></p>
+      <p>Glory to the Father, and to the Son, and to the Holy Spirit, now and ever, and unto ages of ages. Amen.</p>
+      <p><span class="prayer-title">The Lord's Prayer</span>Our Father, who art in heaven, hallowed be Thy name. Thy kingdom come, Thy will be done, on earth as it is in heaven. Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us. And lead us not into temptation, but deliver us from the evil one.</p>
+    </div>
+    <div class="card">
+      <span class="prayer-title">The Creed <span class="rubric" style="font-family:inherit">(optional)</span></span>
+      <p>I believe in one God, the Father Almighty, Maker of heaven and earth, and of all things visible and invisible.</p>
+      <p>And in one Lord Jesus Christ, the Son of God, the Only-begotten, begotten of the Father before all ages; Light of Light, true God of true God, begotten, not made, of one essence with the Father, by whom all things were made; who for us men and for our salvation came down from heaven, and was incarnate of the Holy Spirit and the Virgin Mary, and became man; and was crucified for us under Pontius Pilate, and suffered, and was buried; and rose again on the third day according to the Scriptures; and ascended into heaven, and sits at the right hand of the Father; and He shall come again with glory to judge the living and the dead, whose kingdom shall have no end.</p>
+      <p>And in the Holy Spirit, the Lord, the Giver of life, who proceeds from the Father, who with the Father and the Son together is worshipped and glorified, who spoke by the prophets.</p>
+      <p>In one Holy, Catholic and Apostolic Church. I confess one baptism for the remission of sins. I look for the resurrection of the dead, and the life of the age to come. Amen.</p>
+    </div>
+  </section>
+
+  <div class="ornament"><svg><use href="#star"/></svg></div>
+  <section>
+    <h2>The Prayers of Each Decade</h2>
+    <div class="card">
+      <span class="prayer-title">Theotokos Virgin, Rejoice <span class="rubric" style="font-family:inherit">(10 times)</span></span>
+      <blockquote>O Theotokos and Virgin, rejoice! Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, for thou hast borne the Saviour of our souls.</blockquote>
+      <span class="prayer-title">Our Father <span class="rubric" style="font-family:inherit">(once)</span></span>
+      <p style="margin-top:0">Then call to mind the event and intention of the decade.</p>
+      <span class="prayer-title">Open Unto Us <span class="rubric" style="font-family:inherit">(optional)</span></span>
+      <blockquote>Open unto us the doors of compassion, O blessed Theotokos; hoping in thee, may we not perish; through thee may we be delivered from adversities, for thou art the salvation of the Christian race.</blockquote>
+    </div>
+  </section>
+
+  <div class="ornament"><svg><use href="#ocross"/></svg></div>
+  <section>
+    <h2>The Fifteen Decades</h2>
+    <div id="decades"></div>
+  </section>
+
+  <div class="ornament"><svg><use href="#star"/></svg></div>
+  <section id="closing">
+    <h2>Closing Prayers</h2>
+    <div class="card">
+      <span class="prayer-title">It Is Truly Meet (Axion Estin)</span>
+      <blockquote>It is truly meet to bless thee, O Theotokos, ever-blessed and most pure, and the Mother of our God. More honourable than the Cherubim, and more glorious beyond compare than the Seraphim, without defilement thou gavest birth to God the Word. True Theotokos, we magnify thee.</blockquote>
+      <span class="prayer-title">Beneath Thy Compassion</span>
+      <blockquote>Beneath thy compassion we take refuge, O Theotokos. Despise not our prayers in our necessity, but deliver us from harm, O only pure, only blessed one.</blockquote>
+      <p><b>Most Holy Theotokos, save us.</b></p>
+      <p>Glory to the Father, and to the Son, and to the Holy Spirit, now and ever, and unto ages of ages. Amen.</p>
+      <p>Lord, have mercy. <span class="rubric">(3 times)</span></p>
+      <p>Through the prayers of the Most Pure Theotokos, of our venerable and God-bearing father Seraphim of Sarov, and of all the saints, Lord Jesus Christ our God, have mercy on us and save us. Amen.</p>
+      <p class="rubric">Make the sign of the cross.</p>
+    </div>
+  </section>
+
+  <footer>
+    <svg><use href="#ocross"/></svg>
+    <p><em>The events and intentions follow a commonly used Russian form of the rule; wording varies between sources. You may add your own intentions to each decade.</em></p>
+    <p style="font-family:Cinzel,serif;letter-spacing:.15em;color:var(--wine)">MOST HOLY THEOTOKOS, SAVE US</p>
+  </footer>
+</main>
+
+<script>
+const decades = [
+  ["The Nativity of the Theotokos","Let us remember the Nativity of the Most Holy Theotokos.","for our parents, relatives and children."],
+  ["The Entry into the Temple","Let us remember her Entry into the Temple.","for those who have fallen away from the Church, that they may return."],
+  ["The Annunciation","Let us remember the Annunciation.","for the comforting of the sorrowful and the afflicted."],
+  ["The Meeting with Righteous Elizabeth","Let us remember her visit to Elizabeth.","for the reconciliation of the estranged and the reunion of the separated."],
+  ["The Nativity of Christ","Let us remember the Nativity of Christ.","for the rebirth of our souls and new life in Christ."],
+  ["The Meeting of the Lord","Let us remember the Meeting of the Lord and St. Simeon's words, “Now lettest Thou Thy servant depart in peace.”","for a peaceful, Christian end to our lives."],
+  ["The Flight into Egypt","Let us remember the Flight into Egypt.","to be delivered from temptation and from every evil."],
+  ["The Finding in the Temple","Let us remember how she found the twelve-year-old Jesus in the Temple.","that the Lord's will be done in our lives."],
+  ["The Wedding at Cana","Let us remember Christ's first miracle, at His Mother's request.","for help in our needs and in our work."],
+  ["The Theotokos at the Cross","Let us remember the Theotokos standing at the Cross of her Son.","for strength of soul and the driving away of despondency."],
+  ["The Resurrection of Christ","Let us remember the Resurrection of Christ.","that our souls may rise to new life, with courage in our faith."],
+  ["The Ascension of Christ","Let us remember the Ascension of the Lord.","that our souls may be lifted from earthly cares toward heavenly things."],
+  ["The Descent of the Holy Spirit","Let us remember the Descent of the Holy Spirit upon the Apostles and the Theotokos.","that we may receive the grace of the Holy Spirit."],
+  ["The Dormition of the Theotokos","Let us remember the Dormition of the Theotokos.","for a good and peaceful end."],
+  ["The Glory of the Theotokos","Let us remember her glory in heaven, crowned by the Lord.","that she may cover the faithful with her holy veil and intercede for the whole world."]
+];
+
+const state = decades.map(() => ({beads:0, pater:false}));
+const wrap = document.getElementById('decades');
+const toc = document.getElementById('toc');
+
+decades.forEach(([title, remember, intent], i) => {
+  const card = document.createElement('div');
+  card.className = 'card decade'; card.id = 'd' + (i+1);
+  card.innerHTML = `
+    <div class="num">${i+1}</div>
+    <h3>${title}</h3>
+    <p class="intent">${remember} Let us pray <b>${intent}</b></p>
+    <div class="beads">${Array.from({length:10},(_,b)=>`<button class="bead" type="button" aria-label="Rejoice ${b+1}" data-d="${i}" data-b="${b}"></button>`).join('')}</div>
+    <button class="pater" type="button" data-d="${i}"><svg class="cross"><use href="#ocross"/></svg>Our Father</button>`;
+  wrap.appendChild(card);
+  const a = document.createElement('a');
+  a.href = '#d' + (i+1); a.textContent = i+1; a.id = 't' + i;
+  toc.appendChild(a);
+});
+wrap.insertAdjacentHTML('afterbegin','<p class="hint">Tap a bead for each “Rejoice”</p>');
+
+function render(){
+  let total = 0;
+  state.forEach((s, i) => {
+    total += s.beads;
+    const card = document.getElementById('d'+(i+1));
+    card.querySelectorAll('.bead').forEach((el, b) => el.classList.toggle('on', b < s.beads));
+    card.querySelector('.pater').classList.toggle('on', s.pater);
+    const done = s.beads === 10 && s.pater;
+    card.classList.toggle('complete', done);
+    document.getElementById('t'+i).classList.toggle('done', done);
+  });
+  document.getElementById('count').textContent = total + ' / 150';
+  document.getElementById('fill').style.width = (total/150*100) + '%';
+  try { localStorage.setItem('theotokosRule', JSON.stringify(state)); } catch(e) {}
+}
+
+wrap.addEventListener('click', e => {
+  const bead = e.target.closest('.bead');
+  const pater = e.target.closest('.pater');
+  if (bead) {
+    const d = +bead.dataset.d, b = +bead.dataset.b;
+    state[d].beads = (state[d].beads === b+1) ? b : b+1;
+    if (navigator.vibrate) { try { navigator.vibrate(10); } catch(_){} }
+    render();
+  } else if (pater) {
+    const d = +pater.dataset.d;
+    state[d].pater = !state[d].pater;
+    render();
+    if (state[d].pater && state[d].beads === 10 && d < 14) {
+      setTimeout(() => document.getElementById('d'+(d+2)).scrollIntoView({behavior:'smooth', block:'center'}), 350);
+    }
+  }
+});
+
+document.getElementById('reset').addEventListener('click', () => {
+  state.forEach(s => { s.beads = 0; s.pater = false; });
+  render(); window.scrollTo({top:0, behavior:'smooth'});
+});
+
+try {
+  const saved = JSON.parse(localStorage.getItem('theotokosRule'));
+  if (Array.isArray(saved) && saved.length === 15) saved.forEach((s,i)=>{ state[i].beads = s.beads|0; state[i].pater = !!s.pater; });
+} catch(e) {}
+render();
+</script>
+</body>
+</html>
